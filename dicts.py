@@ -1,48 +1,28 @@
 
 def create_inventory(items):
-    """Create a dict that tracks the amount (count) of each element on the `items` list.
+    new_dict = dict()
+    for it in items:
+        new_dict[it] = items.count(it)
+    return new_dict
 
-    :param items: list - list of items to create an inventory from.
-    :return: dict - the inventory dictionary.
-    """
-    return {}
-
-
-def add_items(inventory, items):
-    """Add or increment items in inventory using elements from the items `list`.
-
-    :param inventory: dict - dictionary of existing inventory.
-    :param items: list - list of items to update the inventory with.
-    :return: dict - the inventory updated with the new items.
-    """
-    return {}
-
+def add_items(map_inv, list_items, dir = 1):
+    new_inv = dict()
+    for it in list_items:
+        new_inv[it] = dir * list_items.count(it) + map_inv[it] if it in map_inv else list_items.count(it)
+        if new_inv[it] < 0:
+            new_inv[it] = 0
+    return new_inv
 
 def decrement_items(inventory, items):
-    """Decrement items in inventory using elements from the `items` list.
-
-    :param inventory: dict - inventory dictionary.
-    :param items: list - list of items to decrement from the inventory.
-    :return: dict - updated inventory with items decremented.
-    """
-    return {}
-
+    return add_items(inventory,items,-1)
 
 def remove_item(inventory, item):
-    """Remove item from inventory if it matches `item` string.
+    if item in inventory.keys():
+        del inventory[item]
+    return inventory
 
-    :param inventory: dict - inventory dictionary.
-    :param item: str - item to remove from the inventory.
-    :return: dict - updated inventory with item removed. Current inventory if item does not match.
-    """
-    return {}
-
-
-def list_inventory(inventory):
-    """Create a list containing all (item_name, item_count) pairs in inventory.
-
-    :param inventory: dict - an inventory dictionary.
-    :return: list of tuples - list of key, value pairs from the inventory dictionary.
-    """
-    return {}
-
+def list_inventory(dict_inv):
+    new_list = []
+    for item in dict_inv.keys():
+        new_list.append((item, dict_inv[item]))
+    return new_list
