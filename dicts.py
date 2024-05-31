@@ -36,5 +36,3 @@ def list_inventory(dict_inv):
             new_list.append((item, dict_inv[item]))
 
     return new_list
-        new_list.append((item, dict_inv[item]))
-    return new_list
