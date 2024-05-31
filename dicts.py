@@ -1,4 +1,3 @@
-
 def create_inventory(items):
     new_dict = dict()
     for it in items:
@@ -7,10 +6,16 @@ def create_inventory(items):
 
 def add_items(map_inv, list_items, dir = 1):
     new_inv = dict()
-    for it in list_items:
-        new_inv[it] = dir * list_items.count(it) + map_inv[it] if it in map_inv else list_items.count(it)
-        if new_inv[it] < 0:
-            new_inv[it] = 0
+    
+    for key in map_inv.keys():     
+        for it in list_items:
+            new_inv[it] = dir * list_items.count(it) + map_inv[it] if it in map_inv else list_items.count(it)
+                
+            if new_inv[it] < 0:
+                new_inv[it] = 0
+
+            new_inv[key] = map_inv[key]
+                
     return new_inv
 
 def decrement_items(inventory, items):
